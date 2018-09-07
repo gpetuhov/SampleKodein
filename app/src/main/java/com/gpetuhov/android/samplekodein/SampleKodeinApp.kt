@@ -12,10 +12,15 @@ import org.kodein.di.generic.eagerSingleton
 // and override kodein property.
 // This is where we say, which concrete implementations to instantiate.
 // It is the analog of Dagger Module (where instances are provided).
+
+// Don't forget to use this class in the manifest!
+
 class SampleKodeinApp : Application(), KodeinAware {
 
     override val kodein = Kodein.lazy {
-        // eagerSingleton is initialized eagerly (when the app is started)
+        // This is where we tell Kodein, which concrete implementation
+        // to use for the Repository interface.
+        // eagerSingleton is initialized eagerly (when the app is started).
         bind<Repository>() with eagerSingleton { BobRepository() }
     }
 }
